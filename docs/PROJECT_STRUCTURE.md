@@ -18,7 +18,8 @@ c:/Users/USER/Farmerch Website/   ← workspace root (run npm/npx from here)
 │   │   ├── sections/              ← full-page section components (built per feature)
 │   │   │   ├── Hero.tsx           ← hero section (done)
 │   │   │   ├── Services.tsx       ← services grid + partnership CTA (done)
-│   │   │   └── (HowItWorks, Coverage, QuoteForm — coming soon)
+│   │   │   ├── HowItWorks.tsx     ← process steps + benefit cards (done)
+│   │   │   └── (Coverage, QuoteForm — coming soon)
 │   │   ├── shared/                ← Farmerch design-language primitives
 │   │   │   ├── SectionWrapper.tsx ← background + spacing shell for every section
 │   │   │   ├── SectionHeader.tsx  ← eyebrow / heading / description block

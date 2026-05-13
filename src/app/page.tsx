@@ -1,5 +1,6 @@
-import Hero     from "@/components/sections/Hero";
-import Services from "@/components/sections/Services";
+import Hero       from "@/components/sections/Hero";
+import Services   from "@/components/sections/Services";
+import HowItWorks from "@/components/sections/HowItWorks";
 import { SectionWrapper } from "@/components/shared";
 import { Container }      from "@/components/ui";
 
@@ -8,15 +9,9 @@ export default function HomePage() {
     <>
       <Hero />
       <Services />
+      <HowItWorks />
 
       {/* ── Placeholder sections — replaced one by one as built ── */}
-
-      <SectionWrapper id="how-it-works" background="muted">
-        <Container>
-          <h2 className="text-3xl font-bold text-ink">How It Works</h2>
-          <p className="mt-4 text-ink-muted">How It Works section — coming soon.</p>
-        </Container>
-      </SectionWrapper>
 
       <SectionWrapper id="coverage" background="gradient">
         <Container>
