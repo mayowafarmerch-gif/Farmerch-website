@@ -36,6 +36,7 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
   ) => {
     const generatedId = useId();
     const id = externalId ?? generatedId;
+    const { required } = props;
 
     return (
       <div className="flex flex-col gap-1.5">
@@ -45,6 +46,9 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
             className="text-sm font-medium text-ink-body"
           >
             {label}
+            {required && (
+              <span className="ml-0.5 text-red-500" aria-hidden="true">*</span>
+            )}
           </label>
         )}
 

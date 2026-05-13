@@ -59,7 +59,7 @@ const sectionFade = {
   hidden:  { opacity: 0, y: 20 },
   visible: {
     opacity: 1, y: 0,
-    transition: { duration: 0.6, ease: "easeOut" },
+    transition: { duration: 0.55, ease: "easeOut" },
   },
 };
 
@@ -97,6 +97,7 @@ export default function Services() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
+          role="list"
           className="grid list-none grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3"
           aria-label="Services offered by Farmerch"
         >

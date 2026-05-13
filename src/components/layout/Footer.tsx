@@ -9,8 +9,9 @@ const socialLinks = [
   { label: "Instagram",  href: "#" },
 ];
 
+const YEAR = new Date().getFullYear();
+
 export default function Footer() {
-  const year = new Date().getFullYear();
 
   return (
     <footer className="bg-gray-900 text-white" aria-label="Site footer">
@@ -120,7 +121,7 @@ export default function Footer() {
         {/* Copyright bar */}
         <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-gray-800 pt-8 sm:flex-row">
           <p className="text-xs text-gray-400">
-            © {year} {siteConfig.name}. All rights reserved.
+            © {YEAR} {siteConfig.name}. All rights reserved.
           </p>
           <nav aria-label="Legal links" className="flex gap-6">
             {["Privacy Policy", "Terms of Service", "Cookie Policy"].map((item) => (

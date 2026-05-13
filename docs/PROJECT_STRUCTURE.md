@@ -48,12 +48,33 @@ c:/Users/USER/Farmerch Website/   ← workspace root (run npm/npx from here)
 │   └── types/
 │       └── index.ts               ← shared TypeScript interfaces
 ├── docs/
-│   ├── FIGMA_DESIGN_SPEC.md       ← authoritative UI/UX spec (colors, spacing, anatomy)
-│   ├── PRIMITIVES_GUIDE.md        ← usage guide for all 13 shared/ui components
-│   └── PROJECT_STRUCTURE.md       ← this file
+│   ├── FIGMA_DESIGN_SPEC.md            ← authoritative UI/UX spec (colors, spacing, anatomy)
+│   ├── PRIMITIVES_GUIDE.md             ← usage guide for all 13 shared/ui components
+│   ├── PRODUCTION_READINESS_REPORT.md  ← audit findings, improvements, remaining TODOs
+│   └── PROJECT_STRUCTURE.md            ← this file
 ├── next.config.ts
 ├── tsconfig.json                  ← paths: "@/*" → "./src/*"
 └── package.json
+
+## Browser + PWA assets
+
+`src/app/icon.svg`        — SVG favicon, auto-detected by Next.js App Router convention
+`src/app/manifest.ts`     — Web app manifest (name, theme color, icons) → served at /manifest.webmanifest
+`public/og-image.jpg`     — [PENDING] 1200×630 Open Graph image for social sharing
+
+## Production hardening (2026-05-13)
+
+See `docs/PRODUCTION_READINESS_REPORT.md` for the full audit. Key changes:
+- `layout.tsx`: full metadata, JSON-LD structured data, themeColor, OG/Twitter images, keywords
+- `globals.css`: `text-wrap: balance` on headings, `min-height: 100dvh`
+- `Header.tsx`: `inert={!isOpen}` closes keyboard access to hidden mobile menu; semantic tokens
+- `Input/Select/Textarea.tsx`: `required` prop renders asterisk in label; forwards `required` to element
+- `QuoteForm.tsx`: required attributes on 9 fields; required-field note above form
+- `FeatureList.tsx` + `Services.tsx`: `role="list"` preserves semantics with `list-style: none`
+- `HowItWorks.tsx`: connector `bg-gray-200` → `bg-border` (token)
+- `Coverage.tsx`: fadeUp duration standardized 0.45 → 0.5
+- `Services.tsx`: sectionFade duration standardized 0.6 → 0.55
+- `Footer.tsx`: `YEAR` constant computed outside component
 ```
 
 ## Architectural decisions

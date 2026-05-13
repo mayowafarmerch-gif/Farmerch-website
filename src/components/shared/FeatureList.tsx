@@ -31,6 +31,7 @@ function FeatureList({
 }: FeatureListProps) {
   return (
     <ul
+      role="list"
       className={cn(
         "grid gap-3",
         columns === 2 ? "grid-cols-2" : "grid-cols-1",

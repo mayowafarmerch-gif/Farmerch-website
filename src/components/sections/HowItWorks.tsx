@@ -176,7 +176,7 @@ export default function HowItWorks() {
                     aria-hidden="true"
                     className="pointer-events-none absolute left-full top-12 hidden w-8 items-center lg:flex"
                   >
-                    <div className="h-px w-full bg-gray-200" />
+                    <div className="h-px w-full bg-border" />
                   </div>
                 )}
               </motion.li>

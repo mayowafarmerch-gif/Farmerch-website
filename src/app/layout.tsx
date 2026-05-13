@@ -1,8 +1,8 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
-import { siteConfig } from "@/data/site";
+import { siteConfig, contact } from "@/data/site";
 
 const inter = Inter({
   subsets:  ["latin"],
@@ -10,13 +10,44 @@ const inter = Inter({
   display:  "swap",
 });
 
+/* ─── Viewport ───────────────────────────────────────────────────── */
+
+export const viewport: Viewport = {
+  width:        "device-width",
+  initialScale: 1,
+  themeColor:   "#059669",
+};
+
+/* ─── Metadata ───────────────────────────────────────────────────── */
+
 export const metadata: Metadata = {
+  applicationName: siteConfig.name,
   title: {
     default:  `${siteConfig.name} — ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.description,
+  keywords: [
+    "farm mechanization Nigeria",
+    "agricultural services Nigeria",
+    "tractor services",
+    "commercial farming Nigeria",
+    "land preparation services Nigeria",
+    "planting operations Nigeria",
+    "harvesting services Nigeria",
+    "agritech Nigeria",
+    "Farmerch",
+    "Farmerch Global Limited",
+    "southwest Nigeria agriculture",
+  ],
+  authors:   [{ name: siteConfig.name, url: siteConfig.url }],
+  creator:   siteConfig.name,
+  publisher: siteConfig.name,
+  category:  "Agriculture",
   metadataBase: new URL(siteConfig.url),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type:        "website",
     locale:      "en_NG",
@@ -24,16 +55,61 @@ export const metadata: Metadata = {
     siteName:    siteConfig.name,
     title:       `${siteConfig.name} — ${siteConfig.tagline}`,
     description: siteConfig.description,
+    images: [
+      {
+        url:    "/og-image.jpg",
+        width:  1200,
+        height: 630,
+        alt:    `${siteConfig.name} — Professional Farm Mechanization`,
+      },
+    ],
   },
   twitter: {
-    card:  "summary_large_image",
-    title: `${siteConfig.name} — ${siteConfig.tagline}`,
+    card:        "summary_large_image",
+    title:       `${siteConfig.name} — ${siteConfig.tagline}`,
+    description: siteConfig.description,
+    images:      ["/og-image.jpg"],
   },
   robots: {
     index:  true,
     follow: true,
+    googleBot: {
+      index:              true,
+      follow:             true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet":       -1,
+    },
   },
 };
+
+/* ─── Structured data (JSON-LD) ──────────────────────────────────── */
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type":    "ProfessionalService",
+  name:        siteConfig.name,
+  url:         siteConfig.url,
+  description: siteConfig.description,
+  telephone:   contact.phone,
+  email:       contact.email,
+  address: {
+    "@type":          "PostalAddress",
+    addressRegion:    "Southwestern Nigeria",
+    addressCountry:   "NG",
+  },
+  areaServed: ["Oyo State", "Ekiti State", "Osun State", "Ogun State", "Ondo State"],
+  knowsAbout: [
+    "Farm Mechanization",
+    "Land Preparation",
+    "Planting Operations",
+    "Harvesting Services",
+    "Agricultural Tractor Operations",
+  ],
+  serviceType: "Agricultural Mechanization Services",
+};
+
+/* ─── Root layout ────────────────────────────────────────────────── */
 
 export default function RootLayout({
   children,
@@ -42,6 +118,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="flex min-h-screen flex-col antialiased">
         <Header />
         <main className="flex-1 pt-16">{children}</main>

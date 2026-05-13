@@ -196,6 +196,11 @@ export default function QuoteForm() {
               noValidate
               aria-label="Request a mechanization quote"
             >
+              {/* Required field note */}
+              <p className="mb-6 text-xs text-ink-muted">
+                Fields marked <span className="text-red-500" aria-hidden="true">*</span> are required.
+              </p>
+
               {/*
                 Responsive 2-column grid:
                   • mobile  (<md): all fields in 1 column, stacked
@@ -214,6 +219,7 @@ export default function QuoteForm() {
                   render={({ field, fieldState }) => (
                     <Select
                       {...field}
+                      required
                       label="Organization Type"
                       options={ORG_TYPES}
                       placeholder="Select organization type"
@@ -225,6 +231,7 @@ export default function QuoteForm() {
                 {/* 2. Organization Name */}
                 <Input
                   {...register("organizationName")}
+                  required
                   label="Organization Name"
                   placeholder="e.g. Oyo State Agric Investment Corp"
                   error={errors.organizationName?.message}
@@ -233,6 +240,7 @@ export default function QuoteForm() {
                 {/* 3. Contact Name */}
                 <Input
                   {...register("contactName")}
+                  required
                   label="Contact Name"
                   placeholder="Your full name"
                   autoComplete="name"
@@ -242,6 +250,7 @@ export default function QuoteForm() {
                 {/* 4. Email */}
                 <Input
                   {...register("email")}
+                  required
                   type="email"
                   label="Email Address"
                   placeholder="you@organization.com"
@@ -252,6 +261,7 @@ export default function QuoteForm() {
                 {/* 5. Phone */}
                 <Input
                   {...register("phone")}
+                  required
                   type="tel"
                   label="Phone Number"
                   placeholder="+234 803 123 4567"
@@ -266,6 +276,7 @@ export default function QuoteForm() {
                   render={({ field, fieldState }) => (
                     <Select
                       {...field}
+                      required
                       label="Service Required"
                       options={SERVICE_TYPES}
                       placeholder="Select a service"
@@ -277,6 +288,7 @@ export default function QuoteForm() {
                 {/* 7. Farm Size */}
                 <Input
                   {...register("farmSize")}
+                  required
                   label="Farm Size"
                   placeholder="e.g. 200 hectares"
                   error={errors.farmSize?.message}
@@ -285,6 +297,7 @@ export default function QuoteForm() {
                 {/* 8. Location */}
                 <Input
                   {...register("location")}
+                  required
                   label="Location"
                   placeholder="City, State"
                   error={errors.location?.message}
@@ -298,6 +311,7 @@ export default function QuoteForm() {
                     render={({ field, fieldState }) => (
                       <Select
                         {...field}
+                        required
                         label="Preferred Timeline"
                         options={TIMELINES}
                         placeholder="When do you need this service?"
@@ -307,7 +321,7 @@ export default function QuoteForm() {
                   />
                 </div>
 
-                {/* 10. Additional Details — full-width */}
+                {/* 10. Additional Details — full-width, optional */}
                 <div className="md:col-span-2">
                   <Textarea
                     {...register("additionalInfo")}
