@@ -20,7 +20,7 @@ c:/Users/USER/Farmerch Website/   ← workspace root (run npm/npx from here)
 │   │   │   ├── Services.tsx       ← services grid + partnership CTA (done)
 │   │   │   ├── HowItWorks.tsx     ← process steps + benefit cards (done)
 │   │   │   ├── Coverage.tsx       ← coverage card + expansion roadmap (done)
-│   │   │   └── (QuoteForm — coming soon)
+│   │   │   └── QuoteForm.tsx      ← quote request form — RHF + Zod v4 + success state (done)
 │   │   ├── shared/                ← Farmerch design-language primitives
 │   │   │   ├── SectionWrapper.tsx ← background + spacing shell for every section
 │   │   │   ├── SectionHeader.tsx  ← eyebrow / heading / description block
