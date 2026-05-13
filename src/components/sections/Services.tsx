@@ -171,7 +171,7 @@ export default function Services() {
                 Built for Commercial-Scale Agriculture
               </h2>
               <p className="mb-8 text-lg leading-relaxed text-brand-100">
-                We partner with commercial farms, government agencies, and cooperatives
+                We partner with commercial farms, government agencies, financial institutions, and cooperatives
                 to deliver coordinated, quality-controlled mechanization at any scale —
                 backed by a trusted network of certified operators.
               </p>

@@ -1,4 +1,4 @@
-import type { NavItem, Service, ProcessStep, CoverageRegion, Stat } from "@/types";
+import type { NavItem, Service, ProcessStep, CoverageRegion, Stat, SocialLink } from "@/types";
 
 /* ── Navigation ────────────────────────────────────────────── */
 
@@ -12,16 +12,16 @@ export const navItems: NavItem[] = [
 /* ── Hero ──────────────────────────────────────────────────── */
 
 export const hero = {
-  badge:       "Powering Agriculture Across Southwestern Nigeria",
+  badge:       "Powering Agriculture Across Nigeria",
   heading:     "Professional Farm Mechanization at Scale",
-  description: "Farmerch Global Limited provides timely, quality mechanization services to commercial farms, government projects, and cooperatives. We coordinate a trusted network of tractor owners and operators to deliver efficient agricultural services when you need them.",
+  description: "Farmerch Global Limited provides timely, quality mechanization services to farmers, governmental agencies, agribusinesses and cooperatives. We coordinate a trusted network of tractor owners and mechanization service providers to deliver efficient agricultural mechanization services when you need them.",
   highlights: [
     "B2B mechanization contracts",
     "Quality-controlled operations",
     "Trusted operator network",
     "On-time project delivery",
   ],
-  stat: { value: "500+", label: "Hectares Serviced Monthly" },
+  stat: { value: "2,000+", label: "Hectares Serviced Annually" },
 };
 
 /* ── Services ──────────────────────────────────────────────── */
@@ -31,8 +31,8 @@ export const services: Service[] = [
     id:          "land-preparation",
     icon:        "Tractor",
     title:       "Land Preparation",
-    description: "Plowing, harrowing, and ridging services for optimal soil preparation across all farm sizes.",
-    features:    ["Disc plowing", "Harrowing", "Ridging", "Bed formation"],
+    description: "Ploughing, harrowing, and ridging services for optimal soil preparation across all farm sizes.",
+    features:    ["Disc ploughing", "Harrowing", "Ridging", "Bed formation"],
   },
   {
     id:          "planting-operations",
@@ -115,7 +115,7 @@ export const processSteps: ProcessStep[] = [
 /* ── Stats banner ──────────────────────────────────────────── */
 
 export const statsPartner: Stat[] = [
-  { value: "500+",  label: "Hectares Serviced"  },
+  { value: "4,000+",  label: "Hectares Serviced"  },
   { value: "50+",   label: "Tractor Partners"   },
   { value: "5",     label: "Active States"      },
   { value: "100%",  label: "Enterprise Ready"   },
@@ -148,9 +148,14 @@ export const expansionTimeline = [
 
 export const contact = {
   address: "Southwestern Nigeria — Oyo & Ekiti States",
-  phone:   "+234 XXX XXX XXXX",
-  email:   "info@farmerchglobal.com",
+  phone:   "+234 813 951 6150",
+  email:   "info@farmerch.co",
 };
+
+export const socialLinks: SocialLink[] = [
+  { label: "LinkedIn",  href: "https://www.linkedin.com/company/farmerch-global-ltd/" },
+  { label: "Instagram", href: "https://www.instagram.com/farmerchnig?igsh=b2hhejZhOTRyZnNi" },
+];
 
 export const footerLinks = {
   quickLinks: [
@@ -175,5 +180,5 @@ export const siteConfig = {
   shortName:   "Farmerch",
   tagline:     "Professional Farm Mechanization at Scale",
   description: "Farmerch Global Limited provides timely, quality mechanization services to commercial farms, government projects, and cooperatives across Southwestern Nigeria.",
-  url:         "https://farmerchglobal.com",
+  url:         "https://farmerch.co",
 };

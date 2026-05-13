@@ -44,6 +44,13 @@ export interface Stat {
   label: string;
 }
 
+/* ── Social links ──────────────────────────────────────────── */
+
+export interface SocialLink {
+  label: string;
+  href:  string;
+}
+
 /* ── Quote form ────────────────────────────────────────────── */
 
 export interface QuoteFormValues {

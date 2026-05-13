@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
-import { siteConfig, contact } from "@/data/site";
+import { siteConfig, contact, socialLinks } from "@/data/site";
 
 const inter = Inter({
   subsets:  ["latin"],
@@ -107,6 +107,7 @@ const jsonLd = {
     "Agricultural Tractor Operations",
   ],
   serviceType: "Agricultural Mechanization Services",
+  sameAs:      socialLinks.map((l) => l.href),
 };
 
 /* ─── Root layout ────────────────────────────────────────────────── */
@@ -125,8 +126,59 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col antialiased">
+        {/*
+          Skip-to-content link — MUST be the first focusable element in <body>
+          so it is the first thing a keyboard or screen reader user encounters.
+
+          Hidden by default via upward translateY(-5rem from its top-4 anchor),
+          which places it at top: 16px − 80px = −64px — fully off-screen above
+          the viewport. On :focus-visible it translates back to top: 16px,
+          slides over the header, and receives focus.
+
+          tabIndex={-1} on <main> is the critical companion: without it the
+          browser cannot move focus to a non-interactive element via href="#id",
+          so after activating this link focus would snap back to the header
+          instead of continuing forward through the page content.
+        */}
+        <a
+          href="#main-content"
+          className={[
+            "skip-link",
+            // Positioning — floats above everything (z > z-navbar=50)
+            "fixed left-4 top-4 z-[200]",
+            // Appearance
+            "inline-flex items-center",
+            "rounded-button bg-brand-600 px-6 py-3",
+            "text-sm font-medium text-white",
+            "shadow-overlay",
+            // Hidden state — shifted off-screen upward
+            "-translate-y-20",
+            // Revealed on keyboard focus
+            "focus-visible:translate-y-0",
+            // Smooth reveal animation
+            "transition-transform duration-200 ease-out",
+          ].join(" ")}
+        >
+          Skip to main content
+        </a>
+
         <Header />
-        <main className="flex-1 pt-16">{children}</main>
+
+        {/*
+          id="main-content"   — anchor target for the skip link
+          tabIndex={-1}       — makes <main> programmatically focusable without
+                                inserting it into the natural tab sequence
+          focus:outline-none  — suppresses the focus ring on this non-interactive
+                                container; the ring is for controls, not regions
+        */}
+        <main
+          id="main-content"
+          tabIndex={-1}
+          className="flex-1 pt-16 focus:outline-none"
+        >
+          {children}
+        </main>
+
         <Footer />
       </body>
     </html>

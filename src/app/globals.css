@@ -37,6 +37,19 @@ body {
   outline-offset: 2px;
 }
 
+/* ── Skip-to-content link ─────────────────────────────────────── */
+/*
+  Override the global :focus-visible rule for the skip link.
+  On a brand-600 (green) button, the global green outline is invisible.
+  A white outline (0 offset, drawn right at the button edge) gives
+  maximum contrast: white ring against the green button interior.
+  Specificity: (0,2,0) — beats global :focus-visible at (0,1,0).
+*/
+.skip-link:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 0;
+}
+
 /* ── Selection ────────────────────────────────────────────────── */
 ::selection {
   background-color: var(--color-brand-200);

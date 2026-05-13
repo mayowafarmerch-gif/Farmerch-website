@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants, Container } from "@/components/ui";
+import { Logo } from "@/components/shared";
 import { navItems, siteConfig } from "@/data/site";
 
 export default function Header() {
@@ -37,14 +38,7 @@ export default function Header() {
             aria-label={`${siteConfig.name} — return to homepage`}
             className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-1"
           >
-            {/*
-              Swap the <span> below for <Image> once the logo file is placed
-              at public/logo.png:
-                <Image src="/logo.png" alt={siteConfig.name} width={120} height={32} priority />
-            */}
-            <span className="select-none text-xl font-bold tracking-tight text-brand-600">
-              {siteConfig.shortName.toUpperCase()}
-            </span>
+            <Logo priority />
           </a>
 
           {/* Desktop nav links */}

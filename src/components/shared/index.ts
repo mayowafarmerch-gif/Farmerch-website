@@ -1,3 +1,4 @@
+export { Logo }          from "./Logo";
 export { SectionWrapper } from "./SectionWrapper";
 export { SectionHeader }  from "./SectionHeader";
 export { FeatureList }    from "./FeatureList";

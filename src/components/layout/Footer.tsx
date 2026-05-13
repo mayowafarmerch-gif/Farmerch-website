@@ -1,13 +1,7 @@
 import { MapPin, Phone, Mail } from "lucide-react";
 import { Container } from "@/components/ui";
-import { siteConfig, contact, footerLinks } from "@/data/site";
-
-const socialLinks = [
-  { label: "Facebook",   href: "#" },
-  { label: "X",          href: "#" },
-  { label: "LinkedIn",   href: "#" },
-  { label: "Instagram",  href: "#" },
-];
+import { Logo } from "@/components/shared";
+import { siteConfig, contact, footerLinks, socialLinks } from "@/data/site";
 
 const YEAR = new Date().getFullYear();
 
@@ -20,14 +14,13 @@ export default function Footer() {
 
           {/* Brand column */}
           <div className="lg:col-span-1">
-            {/*
-              Swap the <span> below for an inverted logo once the file exists:
-                <Image src="/logo.png" alt={siteConfig.name}
-                  width={120} height={32} className="brightness-0 invert" />
-            */}
-            <span className="text-xl font-bold tracking-tight text-white select-none">
-              {siteConfig.shortName.toUpperCase()}
-            </span>
+            <a
+              href="/"
+              aria-label={`${siteConfig.name} — return to homepage`}
+              className="inline-block rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900"
+            >
+              <Logo variant="inverted" />
+            </a>
             <p className="mt-4 text-sm leading-relaxed text-gray-400">
               Professional farm mechanization services for commercial agriculture across Nigeria.
             </p>
@@ -38,7 +31,9 @@ export default function Footer() {
                 <a
                   key={label}
                   href={href}
-                  aria-label={label}
+                  aria-label={`${label} (opens in new tab)`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white transition-colors duration-150 text-xs font-bold"
                 >
                   {label[0]}
