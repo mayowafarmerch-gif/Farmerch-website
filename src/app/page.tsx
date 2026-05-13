@@ -1,6 +1,7 @@
 import Hero       from "@/components/sections/Hero";
 import Services   from "@/components/sections/Services";
 import HowItWorks from "@/components/sections/HowItWorks";
+import Coverage   from "@/components/sections/Coverage";
 import { SectionWrapper } from "@/components/shared";
 import { Container }      from "@/components/ui";
 
@@ -10,16 +11,9 @@ export default function HomePage() {
       <Hero />
       <Services />
       <HowItWorks />
+      <Coverage />
 
-      {/* ── Placeholder sections — replaced one by one as built ── */}
-
-      <SectionWrapper id="coverage" background="gradient">
-        <Container>
-          <h2 className="text-3xl font-bold text-ink">Coverage</h2>
-          <p className="mt-4 text-ink-muted">Coverage section — coming soon.</p>
-        </Container>
-      </SectionWrapper>
-
+      {/* ── Placeholder — replaced when QuoteForm is built ── */}
       <SectionWrapper id="contact" background="white">
         <Container>
           <h2 className="text-3xl font-bold text-ink">Request a Quote</h2>
