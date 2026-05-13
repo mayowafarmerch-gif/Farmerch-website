@@ -16,7 +16,8 @@ c:/Users/USER/Farmerch Website/   ← workspace root (run npm/npx from here)
 │   │   │   ├── Footer.tsx         ← 4-column dark footer
 │   │   │   └── index.ts           ← barrel export
 │   │   ├── sections/              ← full-page section components (built per feature)
-│   │   │   └── (Hero, Services, HowItWorks, Coverage, QuoteForm — coming soon)
+│   │   │   ├── Hero.tsx           ← hero section (done)
+│   │   │   └── (Services, HowItWorks, Coverage, QuoteForm — coming soon)
 │   │   ├── shared/                ← Farmerch design-language primitives
 │   │   │   ├── SectionWrapper.tsx ← background + spacing shell for every section
 │   │   │   ├── SectionHeader.tsx  ← eyebrow / heading / description block
