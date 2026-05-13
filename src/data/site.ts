@@ -49,25 +49,25 @@ export const services: Service[] = [
     features:    ["Combine harvesting", "Grain collection", "Field clearing", "Crop transport"],
   },
   {
-    id:          "project-coordination",
-    icon:        "Users",
-    title:       "Project Coordination",
-    description: "End-to-end project management for large-scale agricultural operations and government contracts.",
-    features:    ["Scheduling", "Quality control", "Operator deployment", "Progress monitoring"],
+    id:          "tractor-network",
+    icon:        "Network",
+    title:       "Tractor Network Coordination",
+    description: "We coordinate a vetted pool of tractor owners and certified operators, matching the right machine and crew to each project's requirements.",
+    features:    ["Vetted operator pool", "Machine-to-job matching", "Operator certification", "Fleet scheduling"],
   },
   {
-    id:          "multi-location-coverage",
-    icon:        "MapPin",
-    title:       "Multi-Location Coverage",
-    description: "Coordinated services across Oyo and Ekiti States with expansion plans across Nigeria.",
-    features:    ["Fleet coordination", "Logistics support", "Regional coverage", "Site management"],
+    id:          "project-supervision",
+    icon:        "ShieldCheck",
+    title:       "Project Supervision",
+    description: "Dedicated field supervisors ensure every operation meets our quality standards — from mobilization through to final client sign-off.",
+    features:    ["On-site supervision", "Quality assurance", "Progress reporting", "Client sign-off"],
   },
   {
-    id:          "timely-deployment",
-    icon:        "Clock",
-    title:       "Timely Deployment",
-    description: "Guaranteed on-time service delivery to meet critical planting and harvesting windows.",
-    features:    ["Seasonal planning", "Weather coordination", "Rapid response", "24/7 support"],
+    id:          "multi-state-deployment",
+    icon:        "Globe",
+    title:       "Multi-State Deployment",
+    description: "Coordinated field operations across multiple states, scaling seamlessly from a single farm to government-wide agricultural programmes.",
+    features:    ["Cross-state logistics", "Seasonal planning", "Rapid mobilization", "Government contracts"],
   },
 ];
 
@@ -115,10 +115,10 @@ export const processSteps: ProcessStep[] = [
 /* ── Stats banner ──────────────────────────────────────────── */
 
 export const statsPartner: Stat[] = [
-  { value: "2",     label: "States Covered"      },
-  { value: "50+",   label: "Tractor Owners"       },
-  { value: "1000+", label: "Hectares Serviced"    },
-  { value: "98%",   label: "On-Time Delivery"     },
+  { value: "500+",  label: "Hectares Serviced"  },
+  { value: "50+",   label: "Tractor Partners"   },
+  { value: "5",     label: "Active States"      },
+  { value: "100%",  label: "Enterprise Ready"   },
 ];
 
 /* ── Coverage ──────────────────────────────────────────────── */
