@@ -91,7 +91,7 @@ export default function QuoteForm() {
     if (!res.ok) {
       const body = await res.json().catch(() => ({})) as { error?: string };
       setErrorMessage(
-        body.error ?? "Something went wrong. Please try again or email us at info@farmerch.co."
+        body.error ?? "Something went wrong. Please try again or email us at farmerchltd@gmail.com."
       );
       return;
     }

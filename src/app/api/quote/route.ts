@@ -157,7 +157,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(
       {
         error:
-          "Email delivery is not configured. Please contact us directly at info@farmerch.co.",
+          "Email delivery is not configured. Please contact us directly at farmerchltd@gmail.com.",
       },
       { status: 500 }
     );
@@ -186,7 +186,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json(
       {
         error:
-          "We could not deliver your request at this time. Please try again or email us at info@farmerch.co.",
+          "We could not deliver your request at this time. Please try again or email us at farmerchltd@gmail.com.",
       },
       { status: 500 }
     );

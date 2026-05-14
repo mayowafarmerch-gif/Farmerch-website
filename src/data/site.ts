@@ -147,9 +147,9 @@ export const expansionTimeline = [
 /* ── Contact / Footer ──────────────────────────────────────── */
 
 export const contact = {
-  address: "Southwestern Nigeria — Oyo & Ekiti States",
+  address: "House 9, Coker Adewoyin Street, Ile-Ife, Osun State, Nigeria",
   phone:   "+234 813 951 6150",
-  email:   "info@farmerch.co",
+  email:   "farmerchltd@gmail.com",
 };
 
 export const socialLinks: SocialLink[] = [

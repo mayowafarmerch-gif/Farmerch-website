@@ -1,4 +1,5 @@
-export { Logo }          from "./Logo";
+export { Logo }            from "./Logo";
+export { WhatsAppButton }  from "./WhatsAppButton";
 export { SectionWrapper } from "./SectionWrapper";
 export { SectionHeader }  from "./SectionHeader";
 export { FeatureList }    from "./FeatureList";

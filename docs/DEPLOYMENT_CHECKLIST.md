@@ -11,7 +11,7 @@
 ### Content
 - [ ] All six site sections render: Hero, Services, How It Works, Coverage, Contact/QuoteForm, Footer
 - [ ] Phone number clickable via `tel:` link: +234 813 951 6150
-- [ ] Email clickable via `mailto:` link: info@farmerch.co
+- [ ] Email clickable via `mailto:` link: farmerchltd@gmail.com
 - [ ] LinkedIn and Instagram links open correct profiles in a new tab
 - [ ] Logo renders in header (color) and footer (white/inverted)
 - [ ] Hero stat: "2,000+ Hectares Serviced Annually"

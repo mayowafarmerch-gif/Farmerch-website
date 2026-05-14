@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Header, Footer } from "@/components/layout";
+import { WhatsAppButton } from "@/components/shared";
 import { siteConfig, contact, socialLinks } from "@/data/site";
 
 const inter = Inter({
@@ -95,7 +96,9 @@ const jsonLd = {
   email:       contact.email,
   address: {
     "@type":          "PostalAddress",
-    addressRegion:    "Southwestern Nigeria",
+    streetAddress:    "House 9, Coker Adewoyin Street",
+    addressLocality:  "Ile-Ife",
+    addressRegion:    "Osun State",
     addressCountry:   "NG",
   },
   areaServed: ["Oyo State", "Ekiti State", "Osun State", "Ogun State", "Ondo State"],
@@ -180,6 +183,7 @@ export default function RootLayout({
         </main>
 
         <Footer />
+        <WhatsAppButton />
       </body>
     </html>
   );

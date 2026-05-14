@@ -468,9 +468,9 @@
 #### Column 4: Contact Information
 
 - **Icons:** `MapPin`, `Phone`, `Mail` (Green 400)
-- **Address:** "Southwestern Nigeria / Osun, Ogun, Oyo, Ekiti, Ondo"
+- **Address:** "House 9, Coker Adewoyin Street, Ile-Ife, Osun State, Nigeria"
 - **Phone:** +234 813 951 6150
-- **Email:** info@farmerch.co
+- **Email:** farmerchltd@gmail.com
 - **Links:** Hover to Green 400
 
 #### Copyright Bar
