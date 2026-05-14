@@ -23,7 +23,7 @@ Verifying a sending domain lets you use a custom `from` address instead of
 the Resend sandbox address. The destination inbox (`farmerchltd@gmail.com`) works
 regardless of whether a custom domain is verified.
 
-> **While unverified:** leave `QUOTE_FROM_EMAIL` unset (or set it to
+> **While unverified:** leave `EMAIL_FROM` unset (or set it to
 > `Farmerch Quotes <onboarding@resend.dev>`). Emails still deliver to Gmail;
 > they will show the sandbox sender in the From field.
 
@@ -31,15 +31,20 @@ regardless of whether a custom domain is verified.
 
 ## 3. Environment variables in Vercel
 
-Go to **Vercel project → Settings → Environment Variables** and add:
+Go to **Vercel project → Settings → Environment Variables** and confirm all three exist:
 
 | Variable | Value | Environments |
 |---|---|---|
 | `RESEND_API_KEY` | `re_…` (from step 1) | Production, Preview |
-| `QUOTE_RECEIVER_EMAIL` | `farmerchltd@gmail.com` | Production, Preview |
-| `QUOTE_FROM_EMAIL` | `Farmerch Quotes <onboarding@resend.dev>` | Production, Preview |
+| `CONTACT_EMAIL` | `farmerchltd@gmail.com` | Production, Preview |
+| `EMAIL_FROM` | `Farmerch Quotes <onboarding@resend.dev>` | Production, Preview |
 
-Variables are read at runtime by the `/api/quote` route handler — no rebuild needed after changing them.
+> **Important:** the variable names must match exactly. The route handler reads
+> `RESEND_API_KEY`, `CONTACT_EMAIL`, and `EMAIL_FROM`. Any other names will
+> cause the "Email delivery is not configured" error.
+
+Variables are read at runtime by the `/api/quote` route handler — no rebuild
+needed after changing them, but a **redeploy is required after changing code**.
 
 ---
 
@@ -50,7 +55,7 @@ Variables are read at runtime by the `/api/quote` route handler — no rebuild n
 cp .env.example .env.local
 ```
 
-Fill in a real Resend test key. `QUOTE_RECEIVER_EMAIL` is already set to
+Fill in a real Resend test key. `CONTACT_EMAIL` is already set to
 `farmerchltd@gmail.com`. Start the dev server:
 
 ```bash
@@ -79,7 +84,7 @@ After deploying, verify the full flow:
 | Scenario | Behaviour |
 |---|---|
 | `RESEND_API_KEY` missing | API returns 500; banner: *"Email delivery is not configured…"* |
-| `QUOTE_RECEIVER_EMAIL` missing | Same as above |
+| `CONTACT_EMAIL` missing | Same as above |
 | Resend API failure | API returns 500; banner: *"We could not deliver your request…"* |
 | Invalid form data | Client-side Zod validation fires before fetch; server re-validates if bypassed |
 

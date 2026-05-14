@@ -142,18 +142,16 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     );
   }
 
-  /* 3. Environment variable guard */
+  /* 3. Environment variable resolution
+        Required:  RESEND_API_KEY  (no default — without it we cannot call Resend)
+        Optional:  CONTACT_EMAIL   (defaults to the known inbox)
+                   EMAIL_FROM      (defaults to Resend shared sender)          */
   const apiKey    = process.env.RESEND_API_KEY;
-  const toEmail   = process.env.QUOTE_RECEIVER_EMAIL;
-  const fromEmail = process.env.QUOTE_FROM_EMAIL
-    ?? "Farmerch Quotes <onboarding@resend.dev>";
+  const toEmail   = process.env.CONTACT_EMAIL ?? "farmerchltd@gmail.com";
+  const fromEmail = process.env.EMAIL_FROM    ?? "onboarding@resend.dev";
 
-  if (!apiKey || !toEmail) {
-    console.error(
-      "[api/quote] Missing environment variable(s):",
-      !apiKey ? "RESEND_API_KEY" : "",
-      !toEmail ? "QUOTE_RECEIVER_EMAIL" : ""
-    );
+  if (!apiKey) {
+    console.error("[api/quote] RESEND_API_KEY environment variable is not set");
     return NextResponse.json(
       {
         error:
