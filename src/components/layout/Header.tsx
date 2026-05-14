@@ -85,18 +85,18 @@ export default function Header() {
         </Container>
       </nav>
 
-      {/* Mobile drawer — animated via max-height.
-          `inert` prevents keyboard focus reaching hidden links when closed. */}
+      {/* Mobile drawer — absolutely positioned below the fixed navbar bar.
+          Uses display:none (hidden class) rather than max-height animation,
+          which is unreliable on Android Chrome inside a position:fixed ancestor. */}
       <div
         id="mobile-menu"
         aria-hidden={!isOpen}
-        inert={!isOpen}
         className={cn(
-          "overflow-hidden bg-white transition-all duration-300 ease-in-out md:hidden",
-          isOpen ? "max-h-96 border-t border-border" : "max-h-0"
+          "absolute inset-x-0 top-full border-t border-border bg-white shadow-lg",
+          isOpen ? "md:hidden" : "hidden"
         )}
       >
-        <div className="px-4 pb-6 pt-3 shadow-lg">
+        <div className="px-4 pb-6 pt-3">
           <ul className="flex flex-col gap-1" role="list">
             {navItems.map((item) => (
               <li key={item.href}>
