@@ -1,41 +1,14 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { CheckCircle, Loader2, Send } from "lucide-react";
+import { AlertCircle, CheckCircle, Loader2, Send } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Button, Container, Input, Select, Textarea } from "@/components/ui";
 import type { SelectOption } from "@/components/ui";
 import { SectionWrapper, SectionHeader, IconContainer } from "@/components/shared";
-
-/* ─── Validation schema ──────────────────────────────────────────────
-   Zod v4: string error messages passed as the second argument
-   (string shorthand, compatible with v4 and v3).
-   ─────────────────────────────────────────────────────────────────── */
-
-const schema = z.object({
-  organizationType:  z.string().min(1, "Please select an organization type"),
-  organizationName:  z.string().min(2, "Organization name is required"),
-  contactName:       z.string().min(2, "Contact name is required"),
-  email:             z.string().email("Enter a valid email address"),
-  /*
-    Nigerian mobile: 0[789]\d{9} (local, 11 digits)
-    or +234[789]\d{9} (international, 14 chars)
-  */
-  phone:             z.string().regex(
-    /^(\+234|0)[789]\d{9}$/,
-    "Enter a valid Nigerian phone number (+234… or 0…)"
-  ),
-  serviceRequired:   z.string().min(1, "Please select a service type"),
-  farmSize:          z.string().min(1, "Farm size is required"),
-  location:          z.string().min(2, "Location is required"),
-  preferredTimeline: z.string().min(1, "Please select a preferred timeline"),
-  additionalInfo:    z.string().optional(),
-});
-
-type FormValues = z.infer<typeof schema>;
+import { quoteSchema, type QuoteFormValues } from "@/lib/quote-schema";
 
 /* ─── Select options ─────────────────────────────────────────────── */
 
@@ -48,6 +21,7 @@ const ORG_TYPES: SelectOption[] = [
 ];
 
 const SERVICE_TYPES: SelectOption[] = [
+  { value: "land-clearing",       label: "Land Clearing"             },
   { value: "land-preparation",    label: "Land Preparation"          },
   { value: "planting-operations", label: "Planting Operations"       },
   { value: "harvesting-services", label: "Harvesting Services"       },
@@ -65,7 +39,7 @@ const TIMELINES: SelectOption[] = [
 
 /* ─── Default values ─────────────────────────────────────────────── */
 
-const DEFAULT_VALUES: FormValues = {
+const DEFAULT_VALUES: QuoteFormValues = {
   organizationType:  "",
   organizationName:  "",
   contactName:       "",
@@ -89,21 +63,10 @@ const sectionFade = {
 /* ─── QuoteForm section ──────────────────────────────────────────── */
 
 export default function QuoteForm() {
-  const pref           = useReducedMotion();
-  const f              = pref ? STILL : sectionFade;
-  const [isSuccess, setIsSuccess] = useState(false);
-
-  /*
-    Store the reset timer in a ref so it can be cancelled on unmount,
-    preventing a state update on an unmounted component.
-  */
-  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  useEffect(() => {
-    return () => {
-      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-    };
-  }, []);
+  const pref                          = useReducedMotion();
+  const f                             = pref ? STILL : sectionFade;
+  const [isSuccess, setIsSuccess]     = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
     register,
@@ -111,28 +74,31 @@ export default function QuoteForm() {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<FormValues>({
-    resolver:      zodResolver(schema),
+  } = useForm<QuoteFormValues>({
+    resolver:      zodResolver(quoteSchema),
     defaultValues: DEFAULT_VALUES,
   });
 
-  const onSubmit = async (data: FormValues) => {
-    /*
-      No backend yet — simulated 1.5 s async delay.
-      Replace the body of this function with a real fetch/mutation
-      when the API is ready. The data object is typed and validated;
-      pass it directly to your endpoint.
-      See docs/PROJECT_STRUCTURE.md § Future backend integration.
-    */
-    void data;
-    await new Promise<void>((resolve) => setTimeout(resolve, 1500));
+  const onSubmit = useCallback(async (data: QuoteFormValues) => {
+    setErrorMessage(null);
+
+    const res = await fetch("/api/quote", {
+      method:  "POST",
+      headers: { "Content-Type": "application/json" },
+      body:    JSON.stringify(data),
+    });
+
+    if (!res.ok) {
+      const body = await res.json().catch(() => ({})) as { error?: string };
+      setErrorMessage(
+        body.error ?? "Something went wrong. Please try again or email us at info@farmerch.co."
+      );
+      return;
+    }
 
     reset(DEFAULT_VALUES);
     setIsSuccess(true);
-
-    if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
-    resetTimerRef.current = setTimeout(() => setIsSuccess(false), 3000);
-  };
+  }, [reset]);
 
   return (
     <SectionWrapper id="contact" background="white">
@@ -174,7 +140,6 @@ export default function QuoteForm() {
               aria-live="polite"
               className="flex flex-col items-center rounded-xl border-2 border-brand-200 bg-brand-50 py-12 text-center"
             >
-              {/* Green-100 circle containing the CheckCircle icon */}
               <IconContainer size="lg" className="mb-6">
                 <CheckCircle size={32} className="text-brand-600" aria-hidden="true" />
               </IconContainer>
@@ -183,8 +148,7 @@ export default function QuoteForm() {
                 Request Submitted
               </h3>
               <p className="max-w-sm text-base text-ink-muted">
-                Thank you! We've received your project details and will be
-                in touch within 48 hours to discuss next steps.
+                {"Thank you! We've received your project details and will be in touch within 48 hours to discuss next steps."}
               </p>
             </div>
 
@@ -200,6 +164,17 @@ export default function QuoteForm() {
               <p className="mb-6 text-xs text-ink-muted">
                 Fields marked <span className="text-red-500" aria-hidden="true">*</span> are required.
               </p>
+
+              {/* ── Submission error banner ─────────────────────── */}
+              {errorMessage && (
+                <div
+                  role="alert"
+                  className="mb-6 flex items-start gap-3 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+                >
+                  <AlertCircle size={16} className="mt-0.5 shrink-0" aria-hidden="true" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
 
               {/*
                 Responsive 2-column grid:

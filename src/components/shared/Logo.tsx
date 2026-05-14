@@ -12,11 +12,11 @@ export function Logo({ variant = "default", priority = false, className }: LogoP
     <Image
       src="/logo.png"
       alt="Farmerch Global Limited logo"
-      width={140}
-      height={40}
+      width={429}
+      height={147}
       priority={priority}
       className={cn(
-        "h-8 w-auto",
+        "h-10 w-auto",
         variant === "inverted" && "brightness-0 invert",
         className
       )}

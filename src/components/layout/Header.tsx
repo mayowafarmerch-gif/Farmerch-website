@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants, Container } from "@/components/ui";
@@ -33,13 +34,13 @@ export default function Header() {
         <Container className="flex h-16 items-center justify-between">
 
           {/* Logo */}
-          <a
+          <Link
             href="/"
             aria-label={`${siteConfig.name} — return to homepage`}
             className="shrink-0 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-600 focus-visible:ring-offset-1"
           >
             <Logo priority />
-          </a>
+          </Link>
 
           {/* Desktop nav links */}
           <ul className="hidden items-center gap-8 md:flex" role="list">
