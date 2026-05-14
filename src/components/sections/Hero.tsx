@@ -129,8 +129,8 @@ export default function Hero() {
                 the rounded corners without affecting the stats card below */}
             <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl">
               <Image
-                src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=1200&q=80"
-                alt="Tractor working across a green agricultural field in Nigeria, representing Farmerch farm mechanization services"
+                src="/images/hero-farm.jpg"
+                alt="Prepared agricultural farmland in Nigeria serviced by Farmerch mechanization operations"
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 50vw"
