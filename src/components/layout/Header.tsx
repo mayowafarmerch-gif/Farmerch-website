@@ -24,7 +24,7 @@ export default function Header() {
     <header
       role="banner"
       className={cn(
-        "fixed inset-x-0 top-0 z-navbar transition-all duration-300",
+        "fixed inset-x-0 top-0 z-[100] transition-all duration-300",
         isScrolled
           ? "border-b border-border bg-white/95 shadow-sm backdrop-blur-sm"
           : "bg-white"
@@ -85,14 +85,14 @@ export default function Header() {
         </Container>
       </nav>
 
-      {/* Mobile drawer — absolutely positioned below the fixed navbar bar.
-          Uses display:none (hidden class) rather than max-height animation,
-          which is unreliable on Android Chrome inside a position:fixed ancestor. */}
+      {/* Mobile drawer — fixed to the viewport so it gets its own GPU compositor
+          layer at z-[110], above any Framer Motion transform-promoted layers in
+          page sections. top-16 aligns it exactly below the 64px navbar bar. */}
       <div
         id="mobile-menu"
         aria-hidden={!isOpen}
         className={cn(
-          "absolute inset-x-0 top-full border-t border-border bg-white shadow-lg",
+          "fixed inset-x-0 top-16 z-[110] border-t border-border bg-white shadow-lg",
           isOpen ? "md:hidden" : "hidden"
         )}
       >
