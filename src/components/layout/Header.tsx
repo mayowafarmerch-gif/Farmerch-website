@@ -7,10 +7,12 @@ import { cn } from "@/lib/utils";
 import { buttonVariants, Container } from "@/components/ui";
 import { Logo } from "@/components/shared";
 import { navItems, siteConfig } from "@/data/site";
+import { useActiveNav } from "@/hooks/useActiveNav";
 
 export default function Header() {
-  const [isOpen, setIsOpen]       = useState(false);
+  const [isOpen, setIsOpen]         = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const activeHref                  = useActiveNav();
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 20);
@@ -44,16 +46,25 @@ export default function Header() {
 
           {/* Desktop nav links */}
           <ul className="hidden items-center gap-8 md:flex" role="list">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeHref === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "text-sm font-medium transition-colors duration-150",
+                      isActive
+                        ? "font-semibold text-brand-600 underline decoration-brand-600 decoration-2 underline-offset-4"
+                        : "text-ink-body hover:text-brand-600"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Desktop CTA */}
@@ -85,9 +96,7 @@ export default function Header() {
         </Container>
       </nav>
 
-      {/* Mobile drawer — fixed to the viewport so it gets its own GPU compositor
-          layer at z-[110], above any Framer Motion transform-promoted layers in
-          page sections. top-16 aligns it exactly below the 64px navbar bar. */}
+      {/* Mobile drawer */}
       <div
         id="mobile-menu"
         aria-hidden={!isOpen}
@@ -98,17 +107,26 @@ export default function Header() {
       >
         <div className="px-4 pb-6 pt-3">
           <ul className="flex flex-col gap-1" role="list">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
-                >
-                  {item.label}
-                </Link>
-              </li>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeHref === item.href;
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={closeMenu}
+                    aria-current={isActive ? "page" : undefined}
+                    className={cn(
+                      "block rounded-md px-3 py-2.5 text-base font-medium transition-colors duration-150",
+                      isActive
+                        ? "bg-surface-subtle font-semibold text-brand-600"
+                        : "text-ink-body hover:bg-surface-muted hover:text-brand-600"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
 
           {/* Mobile CTA */}

@@ -6,6 +6,7 @@ import { ArrowLeft, Clock, CalendarDays, User, Tag } from "lucide-react";
 import { getAllSlugs, getPostBySlug, formatDate } from "@/lib/blog";
 import { siteConfig } from "@/data/site";
 import { Container } from "@/components/ui";
+import { Breadcrumb } from "@/components/shared";
 
 /* ── Static generation ─────────────────────────────────────────────── */
 
@@ -32,13 +33,13 @@ export async function generateMetadata({
     description: post.excerpt,
     alternates:  { canonical: `/blog/${post.slug}` },
     openGraph: {
-      type:             "article",
-      title:            post.title,
-      description:      post.excerpt,
-      url:              `${siteConfig.url}/blog/${post.slug}`,
-      publishedTime:    post.date,
-      authors:          [post.author],
-      tags:             post.tags,
+      type:          "article",
+      title:         post.title,
+      description:   post.excerpt,
+      url:           `${siteConfig.url}/blog/${post.slug}`,
+      publishedTime: post.date,
+      authors:       [post.author],
+      tags:          post.tags,
       images: [
         {
           url:    post.featuredImage,
@@ -57,12 +58,12 @@ export async function generateMetadata({
   };
 }
 
-/* ── Article JSON-LD schema ────────────────────────────────────────── */
+/* ── Article JSON-LD ───────────────────────────────────────────────── */
 
 function ArticleSchema({ post }: { post: NonNullable<ReturnType<typeof getPostBySlug>> }) {
   const jsonLd = {
-    "@context":        "https://schema.org",
-    "@type":           "Article",
+    "@context":       "https://schema.org",
+    "@type":          "Article",
     headline:          post.title,
     description:       post.excerpt,
     datePublished:     post.date,
@@ -81,18 +82,54 @@ function ArticleSchema({ post }: { post: NonNullable<ReturnType<typeof getPostBy
         url:     `${siteConfig.url}/logo.png`,
       },
     },
-    image:             `${siteConfig.url}${post.featuredImage}`,
-    url:               `${siteConfig.url}/blog/${post.slug}`,
-    mainEntityOfPage:  `${siteConfig.url}/blog/${post.slug}`,
+    image:            `${siteConfig.url}${post.featuredImage}`,
+    url:              `${siteConfig.url}/blog/${post.slug}`,
+    mainEntityOfPage: `${siteConfig.url}/blog/${post.slug}`,
     keywords:          post.tags.join(", "),
     articleSection:    post.category,
     wordCount:         post.wordCount,
-    timeRequired:      `PT${post.readingTime}M`,
-    inLanguage:        "en-NG",
+    timeRequired:     `PT${post.readingTime}M`,
+    inLanguage:       "en-NG",
     about: {
       "@type": "Thing",
       name:    "Agricultural Mechanization in Nigeria",
     },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
+/* ── BreadcrumbList JSON-LD ────────────────────────────────────────── */
+
+function BreadcrumbSchema({ post }: { post: NonNullable<ReturnType<typeof getPostBySlug>> }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type":    "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type":  "ListItem",
+        position: 1,
+        name:     "Home",
+        item:     siteConfig.url,
+      },
+      {
+        "@type":  "ListItem",
+        position: 2,
+        name:     "Blog",
+        item:     `${siteConfig.url}/blog`,
+      },
+      {
+        "@type":  "ListItem",
+        position: 3,
+        name:     post.title,
+        item:     `${siteConfig.url}/blog/${post.slug}`,
+      },
+    ],
   };
 
   return (
@@ -120,8 +157,18 @@ export default async function BlogPostPage({
   return (
     <>
       <ArticleSchema post={post} />
+      <BreadcrumbSchema post={post} />
 
       <article className="bg-surface" aria-labelledby="post-title">
+
+        {/* ── Breadcrumb ───────────────────────────────────────── */}
+        <Breadcrumb
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Blog", href: "/blog" },
+            { label: post.title },
+          ]}
+        />
 
         {/* ── Hero image ──────────────────────────────────────── */}
         <div className="relative h-64 w-full sm:h-80 md:h-96 lg:h-[28rem]">
@@ -134,17 +181,6 @@ export default async function BlogPostPage({
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent" />
-
-          {/* Back link overlaid on hero */}
-          <div className="absolute left-0 right-0 top-0 p-6">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 rounded-full bg-white/20 px-4 py-2 text-sm font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            >
-              <ArrowLeft size={14} aria-hidden="true" />
-              All Articles
-            </Link>
-          </div>
 
           {/* Category pill overlaid on hero */}
           <div className="absolute bottom-6 left-6">

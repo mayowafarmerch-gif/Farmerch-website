@@ -1,4 +1,6 @@
 export { Logo }            from "./Logo";
+export { Breadcrumb }      from "./Breadcrumb";
+export type { BreadcrumbItem } from "./Breadcrumb";
 export { WhatsAppButton }  from "./WhatsAppButton";
 export { SectionWrapper } from "./SectionWrapper";
 export { SectionHeader }  from "./SectionHeader";
