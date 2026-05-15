@@ -51,6 +51,25 @@ export interface SocialLink {
   href:  string;
 }
 
+/* ── Blog ──────────────────────────────────────────────────── */
+
+export interface BlogPostMeta {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;           // ISO 8601, e.g. "2025-04-10"
+  author: string;
+  category: string;
+  tags: string[];
+  readingTime: number;    // minutes
+  featuredImage: string;  // path relative to /public
+  wordCount: number;
+}
+
+export interface BlogPost extends BlogPostMeta {
+  Content: React.ComponentType;
+}
+
 /* ── Quote form ────────────────────────────────────────────── */
 
 export interface QuoteFormValues {

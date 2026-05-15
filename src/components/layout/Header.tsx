@@ -46,12 +46,21 @@ export default function Header() {
           <ul className="hidden items-center gap-8 md:flex" role="list">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
-                >
-                  {item.label}
-                </a>
+                {item.href.startsWith("#") ? (
+                  <a
+                    href={item.href}
+                    className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>
@@ -100,13 +109,23 @@ export default function Header() {
           <ul className="flex flex-col gap-1" role="list">
             {navItems.map((item) => (
               <li key={item.href}>
-                <a
-                  href={item.href}
-                  onClick={closeMenu}
-                  className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
-                >
-                  {item.label}
-                </a>
+                {item.href.startsWith("#") ? (
+                  <a
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
+                  >
+                    {item.label}
+                  </a>
+                ) : (
+                  <Link
+                    href={item.href}
+                    onClick={closeMenu}
+                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
+                  >
+                    {item.label}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

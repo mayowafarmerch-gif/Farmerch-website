@@ -102,12 +102,21 @@ export default function Footer() {
             <ul className="space-y-3">
               {footerLinks.quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-sm text-gray-400 hover:text-brand-400 transition-colors duration-150"
-                  >
-                    {link.label}
-                  </a>
+                  {link.href.startsWith("#") ? (
+                    <a
+                      href={link.href}
+                      className="text-sm text-gray-400 hover:text-brand-400 transition-colors duration-150"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className="text-sm text-gray-400 hover:text-brand-400 transition-colors duration-150"
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

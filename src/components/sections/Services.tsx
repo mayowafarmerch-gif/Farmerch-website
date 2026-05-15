@@ -2,7 +2,7 @@
 
 import {
   Tractor, Sprout, Wheat,
-  Network, ShieldCheck, Globe,
+  Axe, ShieldCheck, Globe,
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
@@ -29,7 +29,7 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Tractor,
   Sprout,
   Wheat,
-  Network,
+  Axe,
   ShieldCheck,
   Globe,
 };

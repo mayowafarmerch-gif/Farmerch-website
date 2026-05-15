@@ -6,6 +6,7 @@ export const navItems: NavItem[] = [
   { label: "Services",   href: "#services"  },
   { label: "How It Works", href: "#how-it-works" },
   { label: "Coverage",   href: "#coverage"  },
+  { label: "Blog",       href: "/blog"      },
   { label: "Contact",    href: "#contact"   },
 ];
 
@@ -28,6 +29,13 @@ export const hero = {
 
 export const services: Service[] = [
   {
+    id:          "land-clearing",
+    icon:        "Axe",
+    title:       "Land Clearing Services",
+    description: "Professional mechanized land clearing services for agricultural development, commercial farms, estate projects, and large-scale cultivation.",
+    features:    ["Bush clearing", "Stump removal", "Vegetation clearing", "Site preparation"],
+  },
+  {
     id:          "land-preparation",
     icon:        "Tractor",
     title:       "Land Preparation",
@@ -47,13 +55,6 @@ export const services: Service[] = [
     title:       "Harvesting Services",
     description: "Efficient harvesting operations to minimize post-harvest losses and ensure timely crop collection.",
     features:    ["Combine harvesting", "Grain collection", "Field clearing", "Crop transport"],
-  },
-  {
-    id:          "tractor-network",
-    icon:        "Network",
-    title:       "Tractor Network Coordination",
-    description: "We coordinate a vetted pool of tractor owners and certified operators, matching the right machine and crew to each project's requirements.",
-    features:    ["Vetted operator pool", "Machine-to-job matching", "Operator certification", "Fleet scheduling"],
   },
   {
     id:          "project-supervision",
@@ -82,9 +83,9 @@ export const processSteps: ProcessStep[] = [
   },
   {
     step:        2,
-    icon:        "Users",
-    title:       "Match With Verified Operators",
-    description: "Your project is allocated to vetted tractor owners and certified operators from our trusted network, matched by machine type and regional availability.",
+    icon:        "ClipboardCheck",
+    title:       "Site Inspection & Evaluation",
+    description: "Our field officers visit the project site to assess terrain conditions, accessibility, vegetation density, soil conditions, and operational requirements to ensure accurate project costing and execution planning.",
   },
   {
     step:        3,
@@ -162,14 +163,15 @@ export const footerLinks = {
     { label: "Our Services",   href: "#services"      },
     { label: "How It Works",   href: "#how-it-works"  },
     { label: "Coverage Area",  href: "#coverage"      },
+    { label: "Blog",           href: "/blog"          },
     { label: "Request Quote",  href: "#contact"       },
   ],
   services: [
+    { label: "Land Clearing",       href: "#services" },
     { label: "Land Preparation",    href: "#services" },
     { label: "Planting Operations", href: "#services" },
     { label: "Harvesting Services", href: "#services" },
-    { label: "Project Coordination",href: "#services" },
-    { label: "Tractor Network",     href: "#services" },
+    { label: "Project Supervision", href: "#services" },
   ],
 };
 

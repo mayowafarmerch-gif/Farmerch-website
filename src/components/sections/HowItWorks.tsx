@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  FileText, Users, Calendar,
+  FileText, ClipboardCheck, Calendar,
   Settings, CheckCircle, TrendingUp,
   type LucideIcon,
 } from "lucide-react";
@@ -18,7 +18,7 @@ import { processSteps } from "@/data/site";
 /* ─── Icon registry ──────────────────────────────────────────────── */
 
 const ICON_MAP: Record<string, LucideIcon> = {
-  FileText, Users, Calendar, Settings, CheckCircle, TrendingUp,
+  FileText, ClipboardCheck, Calendar, Settings, CheckCircle, TrendingUp,
 };
 
 /* ─── Benefit cards data ─────────────────────────────────────────────
