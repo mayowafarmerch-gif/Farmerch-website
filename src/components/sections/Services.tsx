@@ -6,6 +6,7 @@ import {
   ArrowRight,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { buttonVariants, Card, Container } from "@/components/ui";
@@ -179,8 +180,8 @@ export default function Services() {
               <CTAGroup align="left">
                 {/* White button on the green surface — overrides
                     buttonVariants primary colours via tailwind-merge */}
-                <a
-                  href="#contact"
+                <Link
+                  href="/#contact"
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "bg-white text-brand-700 hover:bg-brand-50"
@@ -188,7 +189,7 @@ export default function Services() {
                 >
                   Request a Quote
                   <ArrowRight size={18} aria-hidden="true" />
-                </a>
+                </Link>
               </CTAGroup>
             </div>
 

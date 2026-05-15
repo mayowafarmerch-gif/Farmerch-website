@@ -46,35 +46,26 @@ export default function Header() {
           <ul className="hidden items-center gap-8 md:flex" role="list">
             {navItems.map((item) => (
               <li key={item.href}>
-                {item.href.startsWith("#") ? (
-                  <a
-                    href={item.href}
-                    className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                <Link
+                  href={item.href}
+                  className="text-sm font-medium text-ink-body transition-colors duration-150 hover:text-brand-600"
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
 
-          {/* Desktop CTA — anchor styled as primary button */}
-          <a
-            href="#contact"
+          {/* Desktop CTA */}
+          <Link
+            href="/#contact"
             className={cn(
               buttonVariants({ variant: "primary", size: "sm" }),
               "hidden md:inline-flex"
             )}
           >
             Request Quote
-          </a>
+          </Link>
 
           {/* Mobile hamburger toggle */}
           <button
@@ -109,30 +100,20 @@ export default function Header() {
           <ul className="flex flex-col gap-1" role="list">
             {navItems.map((item) => (
               <li key={item.href}>
-                {item.href.startsWith("#") ? (
-                  <a
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
-                  >
-                    {item.label}
-                  </a>
-                ) : (
-                  <Link
-                    href={item.href}
-                    onClick={closeMenu}
-                    className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
-                  >
-                    {item.label}
-                  </Link>
-                )}
+                <Link
+                  href={item.href}
+                  onClick={closeMenu}
+                  className="block rounded-md px-3 py-2.5 text-base font-medium text-ink-body transition-colors duration-150 hover:bg-surface-muted hover:text-brand-600"
+                >
+                  {item.label}
+                </Link>
               </li>
             ))}
           </ul>
 
           {/* Mobile CTA */}
-          <a
-            href="#contact"
+          <Link
+            href="/#contact"
             onClick={closeMenu}
             className={cn(
               buttonVariants({ variant: "primary", size: "md", fullWidth: true }),
@@ -140,7 +121,7 @@ export default function Header() {
             )}
           >
             Request Quote
-          </a>
+          </Link>
         </div>
       </div>
     </header>

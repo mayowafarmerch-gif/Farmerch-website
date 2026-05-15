@@ -3,11 +3,11 @@ import type { NavItem, Service, ProcessStep, CoverageRegion, Stat, SocialLink } 
 /* ── Navigation ────────────────────────────────────────────── */
 
 export const navItems: NavItem[] = [
-  { label: "Services",   href: "#services"  },
-  { label: "How It Works", href: "#how-it-works" },
-  { label: "Coverage",   href: "#coverage"  },
-  { label: "Blog",       href: "/blog"      },
-  { label: "Contact",    href: "#contact"   },
+  { label: "Services",     href: "/#services"    },
+  { label: "How It Works", href: "/#how-it-works" },
+  { label: "Coverage",     href: "/#coverage"    },
+  { label: "Blog",         href: "/blog"         },
+  { label: "Contact",      href: "/#contact"     },
 ];
 
 /* ── Hero ──────────────────────────────────────────────────── */
@@ -160,18 +160,18 @@ export const socialLinks: SocialLink[] = [
 
 export const footerLinks = {
   quickLinks: [
-    { label: "Our Services",   href: "#services"      },
-    { label: "How It Works",   href: "#how-it-works"  },
-    { label: "Coverage Area",  href: "#coverage"      },
+    { label: "Our Services",   href: "/#services"     },
+    { label: "How It Works",   href: "/#how-it-works" },
+    { label: "Coverage Area",  href: "/#coverage"     },
     { label: "Blog",           href: "/blog"          },
-    { label: "Request Quote",  href: "#contact"       },
+    { label: "Request Quote",  href: "/#contact"      },
   ],
   services: [
-    { label: "Land Clearing",       href: "#services" },
-    { label: "Land Preparation",    href: "#services" },
-    { label: "Planting Operations", href: "#services" },
-    { label: "Harvesting Services", href: "#services" },
-    { label: "Project Supervision", href: "#services" },
+    { label: "Land Clearing",       href: "/#services" },
+    { label: "Land Preparation",    href: "/#services" },
+    { label: "Planting Operations", href: "/#services" },
+    { label: "Harvesting Services", href: "/#services" },
+    { label: "Project Supervision", href: "/#services" },
   ],
 };
 

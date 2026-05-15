@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
@@ -92,19 +93,19 @@ export default function Hero() {
               <CTAGroup align="left">
                 {/* Primary CTA — styled via buttonVariants on an <a> to avoid
                     nesting <button> inside <a>, which is invalid HTML. */}
-                <a
-                  href="#contact"
+                <Link
+                  href="/#contact"
                   className={cn(buttonVariants({ size: "lg" }))}
                 >
                   Request a Quote
                   <ArrowRight size={18} aria-hidden="true" />
-                </a>
-                <a
-                  href="#how-it-works"
+                </Link>
+                <Link
+                  href="/#how-it-works"
                   className={cn(buttonVariants({ variant: "secondary", size: "lg" }))}
                 >
                   How It Works
-                </a>
+                </Link>
               </CTAGroup>
             </motion.div>
 
