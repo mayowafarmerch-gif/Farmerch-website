@@ -42,7 +42,7 @@ const BENEFITS = [
   },
   {
     id:          "tractor-operators",
-    title:       "For Service Providers and Equipment Owners",
+    title:       "For Mechanization Service Providers",
     description: "Join a managed network that connects you to consistent contracts, handles scheduling and payments, and supports your equipment operations — so you focus on delivering quality work, not sourcing jobs or chasing invoices.",
     items: [
       "Consistent project pipeline and contract access",
