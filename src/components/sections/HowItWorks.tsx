@@ -42,15 +42,15 @@ const BENEFITS = [
   },
   {
     id:          "tractor-operators",
-    title:       "For Tractor Operators",
-    description: "Join a managed network that handles contracts, scheduling, and payments — so you focus on operating, not sourcing work or chasing invoices.",
+    title:       "For Mechanization Service Providers and Equipment Owners",
+    description: "Join a managed network that connects you to consistent contracts, handles scheduling and payments, and supports your equipment operations — so you focus on delivering quality work, not sourcing jobs or chasing invoices.",
     items: [
-      "Consistent project pipeline year-round",
+      "Consistent project pipeline and contract access",
       "Prompt, transparent payment cycles",
-      "Training and certification support",
-      "Centralised scheduling and dispatch",
-      "Maintenance coordination assistance",
-      "Formal operator certification pathway",
+      "Equipment utilisation and revenue growth support",
+      "Centralised scheduling and dispatch coordination",
+      "Maintenance coordination and fleet support",
+      "Operator training and certification pathways",
     ],
   },
 ];
@@ -195,7 +195,7 @@ export default function HowItWorks() {
             <SectionHeader
               eyebrow="Why Choose Farmerch"
               heading="Built for Both Sides of the Value Chain"
-              description="Whether you're commissioning a large-scale harvest or growing your tractor business, Farmerch is structured to deliver value at every level."
+              description="Whether you're commissioning large-scale mechanization or running a fleet of farm equipment, Farmerch is structured to deliver value at every level."
               align="center"
             />
           </motion.div>
